@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { getUserFromLocalStorage } from '../../Context/LocalStorage';
-import { getAllSalesOfPerson } from '../../services/API';
+import API from '../../services/DELIVERY_API_Services';
 import Header from '../../components/Header';
 import CustomerDetailsContainer from '../CustomerDetails/styles';
 
@@ -11,7 +11,7 @@ export default function CustomerOrders() {
 
   useEffect(() => {
     const getSales = async (idToSearch) => {
-      const salesByPersonId = await getAllSalesOfPerson(idToSearch);
+      const salesByPersonId = await API.salesAPI.getAllSalesOfPerson(idToSearch);
       return setSales(salesByPersonId.data);
     };
     getSales(id);

@@ -1,7 +1,7 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { useAppContext } from '../../Context/APIProvider';
 import { getUserFromLocalStorage } from '../../Context/LocalStorage';
-import { getUserListApi, removeUserApi } from '../../services/API';
+import usersAPI from '../../services/DELIVERY_API_Services';
 import UserListContainer from './styles';
 
 export default function AdmManageUserList() {
@@ -18,7 +18,7 @@ export default function AdmManageUserList() {
   useEffect(() => {
     (async () => {
       if (!userList && user) {
-        const data = await getUserListApi(user.id);
+        const data = await usersAPI.getUserListApi(user.id);
 
         setUserList(data.data);
       }
@@ -26,7 +26,7 @@ export default function AdmManageUserList() {
   }, [setUserList, user, userList]);
 
   const handleToRemoveUser = async (event) => {
-    const data = await removeUserApi(event.target.value, user.token);
+    const data = await usersAPI.removeUserApi(event.target.value, user.token);
     setUserList(data.data);
   };
 

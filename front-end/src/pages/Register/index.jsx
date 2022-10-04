@@ -2,7 +2,7 @@ import { AxiosError } from 'axios';
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router';
 import emailValidate from '../../helpers/emailRegexValidate';
-import { postRegisterApi } from '../../services/API';
+import API from '../../services/DELIVERY_API_Services';
 import { RegisterButton, RegisterContainer, RegisterForm } from './styles';
 
 const NAME_MIN = 12;
@@ -38,7 +38,7 @@ function Register() {
   }, [name, email, password]);
 
   const handlePostRegisterApi = async () => {
-    const returnApi = await postRegisterApi({ name, email, password });
+    const returnApi = await API.registerAPI.postRegisterApi({ name, email, password });
 
     if (returnApi instanceof AxiosError) {
       return setReturnPost(returnApi.response.status);

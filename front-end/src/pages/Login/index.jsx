@@ -5,7 +5,7 @@ import { useNavigate } from 'react-router-dom';
 import ButtonRegister from '../../components/ButtonRegister';
 import { useAppContext } from '../../Context/APIProvider';
 import emailValidate from '../../helpers/emailRegexValidate';
-import { postLoginApi, confirmUser } from '../../services/API';
+import API from '../../services/DELIVERY_API_Services';
 import { getUserFromLocalStorage } from '../../Context/LocalStorage';
 import { LoginButton, LoginContainer, LoginForm } from './styles';
 
@@ -32,8 +32,7 @@ function Login() {
     const checkIfLogged = async () => {
       const userLocal = getUserFromLocalStorage('user');
       if (userLocal) {
-        const validUser = await confirmUser(userLocal.token);
-
+        const validUser = await API.usersAPI.confirmUser(userLocal.token);
         if (validUser instanceof AxiosError) {
           customAlert('token invalido');
         }
@@ -57,7 +56,7 @@ function Login() {
 
   const handlePostLoginApi = async (event) => {
     event.preventDefault();
-    const apiResults = await postLoginApi({ email, password });
+    const apiResults = await API.postLoginApi({ email, password });
 
     if (apiResults instanceof AxiosError) {
       return setStatusReturned(apiResults.response.status);

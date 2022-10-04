@@ -1,10 +1,7 @@
 import React, { useContext, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { useAppContext } from '../../Context/APIProvider';
-import {
-  getSaleById,
-  updateStatusOrderApi,
-} from '../../services/API';
+import API from '../../services/DELIVERY_API_Services';
 import SellerOrderDetailsContainer from './styles';
 
 export default function CheckoutProducts() {
@@ -15,14 +12,14 @@ export default function CheckoutProducts() {
 
   useEffect(() => {
     const getSale = async (idToSearch) => {
-      const saleById = await getSaleById(idToSearch);
+      const saleById = await API.salesAPI.getSaleById(idToSearch);
       setSale(saleById);
     };
     getSale(id);
   }, [id, setSale]);
 
   const changeStatus = async (stringStatus) => {
-    const saleUpdated = await updateStatusOrderApi(id, stringStatus);
+    const saleUpdated = await API.ordersAPI.updateStatusOrderApi(id, stringStatus);
 
     setSale(saleUpdated.data);
   };
