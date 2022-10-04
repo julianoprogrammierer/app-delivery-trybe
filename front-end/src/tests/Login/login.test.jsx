@@ -1,44 +1,51 @@
+import { fireEvent, screen } from '@testing-library/react';
 import React from 'react';
-import { screen } from '@testing-library/react';
-// import userEvent from '@testing-library/user-event';
-import renderWithRouter from '../Rendering/renderWithRouter';
 import App from '../../App';
+import renderWithRouter from '../Rendering/renderWithRouter';
 
-console.log(App);
+const DATA_TEST_ID_EMAIL = 'common_login__input-email';
+const DATA_TEST_ID_BUTTON = 'common_login__button-login';
+const DATA_TEST_ID_PASS = 'common_login__input-password';
+
 beforeAll(() => {
   window.getComputedStyle = () => {
   };
 });
+
 afterEach(() => jest.clearAllMocks());
 
 describe('Test Login Page', () => {
   it('should have the correct inputs and buttons in the document', () => {
-    const { history: { location: { pathname } } } = renderWithRouter(<App />);
-    expect(screen.getByRole('textbox', 'mail')).toBeInTheDocument();
+    renderWithRouter(<App />);
 
-    expect(screen.getByRole('button', { name: /login/i })).toBeInTheDocument();
-    expect(pathname).toBe('/');
+    expect(screen.getByTestId(DATA_TEST_ID_BUTTON)).toBeInTheDocument();
+    expect(screen.getByTestId(DATA_TEST_ID_EMAIL)).toBeInTheDocument();
+
+    // expect(pathname).toBe('/login');
   });
 
-  // it('verify input email, password and button', () => {
-  //   renderWithRouter(<App />, { route: '/' });
+  it('verify input email, password and button', () => {
+    const { route } = renderWithRouter(<App />, '/login');
 
-  //   expect(screen.getByRole('button', { name: /enter/i })).toBeDisabled();
-  //   const button = screen.getByText(/Enter/i);
-  //   const goodEmail = 'good@example.com';
-  //   const goodPassword = '1234567';
-  //   const badPassword = '123456';
-  //   const badEmail = 'bad@examplecom';
+    expect(screen.getByTestId(DATA_TEST_ID_BUTTON)).toBeDisabled();
+    const button = screen.getByTestId(DATA_TEST_ID_BUTTON);
+    const inputEmail = screen.getByTestId(DATA_TEST_ID_EMAIL);
+    const inputPass = screen.getByTestId(DATA_TEST_ID_PASS);
 
-  //   userEvent.type(screen.getByTestId('email-input'), badEmail);
-  //   userEvent.type(screen.getByTestId('password-input'), badPassword);
-  //   expect(button).toBeDisabled();
+    const goodEmail = 'zebirita@email.com';
+    const goodPassword = '$#zebirita#$';
+    const badEmail = 'bad@examplecom';
+    const badPassword = '123';
 
-  //   userEvent.type(screen.getByTestId('email-input'), goodEmail);
-  //   userEvent.type(screen.getByTestId('password-input'), goodPassword);
-  //   expect(button).toBeEnabled();
+    fireEvent.change(inputEmail, { target: { value: badEmail } });
+    fireEvent.change(inputPass, { target: { value: badPassword } });
+    // expect(button).toBeDisabled();
+    fireEvent.change(inputEmail, { target: { value: goodEmail } });
+    fireEvent.change(inputPass, { target: { value: goodPassword } });
 
-  //   userEvent.click(button);
-  //   // expect(window.location.href).toBe('http://localhost/foods');
-  // });
+    expect(button).toBeEnabled();
+    fireEvent.keyPress(button);
+
+    console.log(route);
+  });
 });

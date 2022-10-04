@@ -38,7 +38,7 @@ function Register() {
   }, [name, email, password]);
 
   const handlePostRegisterApi = async () => {
-    const returnApi = await API.registerAPI.postRegisterApi({ name, email, password });
+    const returnApi = await API.postRegisterApi({ name, email, password });
 
     if (returnApi instanceof AxiosError) {
       return setReturnPost(returnApi.response.status);
