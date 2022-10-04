@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import Header from '../../components/Header';
 import { getUserFromLocalStorage } from '../../Context/LocalStorage';
-import { getSellerOrdersApi } from '../../services/API';
+import API from '../../services/DELIVERY_API_Services';
 import SellerOrdersContainer from './styles';
 import dataTestIds from './testIds';
 
@@ -12,7 +12,7 @@ export default function SellerOrder() {
 
   useEffect(() => {
     const getSales = async (idToSearch) => {
-      const salesByPersonId = await getSellerOrdersApi(idToSearch);
+      const salesByPersonId = await API.ordersAPI.getSellerOrdersApi(idToSearch);
       return setSellerOrders(salesByPersonId.data);
     };
     getSales(id);

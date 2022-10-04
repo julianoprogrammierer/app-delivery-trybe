@@ -2,7 +2,7 @@ import React, { useContext, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import Header from '../../components/Header';
 import { useAppContext } from '../../Context/APIProvider';
-import { listSalesWithFullInfoApi, updateStatusOrderApi } from '../../services/API';
+import API from '../../services/DELIVERY_API_Services';
 import CustomerDetailsContainer from './styles';
 import dataTestIds from './testsIds';
 
@@ -12,13 +12,13 @@ export default function CostumerOrderDetails() {
 
   useEffect(() => {
     (async () => {
-      const data = await listSalesWithFullInfoApi(id);
+      const data = await API.salesAPI.listSalesWithFullInfoApi(id);
       setSale(data);
     })();
   }, [id, setSale]);
 
   const handleUpdateStatus = async () => {
-    const result = await updateStatusOrderApi(id, 'Entregue');
+    const result = await API.ordersAPI.updateStatusOrderApi(id, 'Entregue');
     setSale(result.data);
   };
 

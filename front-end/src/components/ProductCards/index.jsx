@@ -5,7 +5,7 @@ import {
   getUserProductListToCheckout,
   saveUserProductListToCheckout,
 } from '../../Context/LocalStorage';
-import { listProductsApi } from '../../services/API';
+import API from '../../services/DELIVERY_API_Services';
 import { Cards, ProductCardsContainer } from './styles';
 
 export default function ProductCards() {
@@ -18,7 +18,7 @@ export default function ProductCards() {
   useEffect(() => {
     (async () => {
       if (!productsList) {
-        const { data } = await listProductsApi();
+        const { data } = await API.listProductsApi();
         setProductsList(data);
       }
     })();
