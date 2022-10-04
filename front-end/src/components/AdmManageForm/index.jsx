@@ -3,7 +3,7 @@ import React, { useContext, useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { useAppContext } from '../../Context/APIProvider';
 import { getUserFromLocalStorage } from '../../Context/LocalStorage';
-import usersAPI from '../../services/DELIVERY_API_Services';
+import API from '../../services/DELIVERY_API_Services';
 import { FormContainer, FormContentContainer } from './styles';
 
 const USER_TYPE = ['administrator', 'customer', 'seller'];
@@ -28,7 +28,7 @@ export default function FormAdmManager() {
   const onSubmit = async (data, e) => {
     e.preventDefault();
 
-    const result = await usersAPI.saveNewUserApi(data, user.token);
+    const result = await API.usersAPI.saveNewUserApi(data, user.token);
 
     if (result instanceof AxiosError) {
       setStatusReturned(result.response.status);
