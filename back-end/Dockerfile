@@ -1,13 +1,13 @@
-FROM node:16.14-alpine
+FROM node:16-alpine
 
 WORKDIR /app-backend
 
-COPY package*.json ./
-
-RUN npm install
+COPY package* ./
 
 COPY . .
 
-EXPOSE 3001
+RUN npm install --production
 
-CMD [ "npm", "start" ]
+ARG NODE_ENV=development
+
+CMD ["npm", "start"]
