@@ -1,7 +1,7 @@
 require('dotenv').config();
 
 const environment = process.env.NODE_ENV || "test";
-
+// sufix
 const suffix = {
   prod: "",
   production: "",
@@ -11,12 +11,12 @@ const suffix = {
 };
 
 const options = {
-  host: process.env.DB_HOST ,
-  port: process.env.DB_PORT,
+  host: process.env.HOSTNAME || process.env.MYSQL_HOST || 'localhost',
+  port: process.env.MYSQL_PORT || '3306',
   database: 
-    `${process.env.MYSQL_DB_NAME || 'delivery-app' }`,
-  username: process.env.DB_USER ,
-  password: process.env.DB_PASS,
+    `${process.env.MYSQL_DB_NAME || 'delivery-app'}${suffix[environment] || suffix.test}`,
+  username: process.env.MYSQL_USER || 'root',
+  password: process.env.MYSQL_PASSWORD || 'password',
   dialect: 'mysql',
   dialectOptions: {
     timezone: 'Z',
