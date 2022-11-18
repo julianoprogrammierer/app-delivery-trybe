@@ -1,6 +1,6 @@
 import * as axios from 'axios';
 
-const PRODUCTS_ROUTE_MAIN = 'http://localhost:3001/products';
+const PRODUCTS_ROUTE_MAIN = `${process.env.REACT_APP_BACKEND}/products`;
 
 const listProductsApi = async () => {
   try {

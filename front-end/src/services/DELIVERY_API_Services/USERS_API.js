@@ -1,10 +1,10 @@
 import * as axios from 'axios';
 
-const USERS_ROUTE_MAIN = 'http://localhost:3001/users';
+const USERS_ROUTE_MAIN = `${process.env.REACT_APP_BACKEND}/users`;
 
 export const listSellersApi = async () => {
   try {
-    const { data } = await axios('http://localhost:3001/users/sellers');
+    const { data } = await axios(`${process.env.REACT_APP_BACKEND}/users/sellers`);
 
     return data;
   } catch (AxiosError) {
@@ -30,7 +30,7 @@ export const saveNewUserApi = async (userDTO, token) => {
 
 export const removeUserApi = async (id, token) => {
   try {
-    const result = await axios.delete(`http://localhost:3001/users/${id}`, { data: { token } });
+    const result = await axios.delete(`${USERS_ROUTE_MAIN}/${id}`, { data: { token } });
     return result;
   } catch (AxiosError) {
     return AxiosError;
@@ -39,7 +39,7 @@ export const removeUserApi = async (id, token) => {
 
 export const confirmUser = async (token) => {
   try {
-    const data = await axios.post('http://localhost:3001/users/verify', {}, {
+    const data = await axios.post(`${USERS_ROUTE_MAIN}/verify`, {}, {
       headers: {
         Authorization: token,
       },

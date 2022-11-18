@@ -1,6 +1,6 @@
 import * as axios from 'axios';
 
-const REGISTER_ROUTE_MAIN = 'http://localhost:3001/register';
+const REGISTER_ROUTE_MAIN = `${process.env.REACT_APP_BACKEND}/register`;
 
 const postRegisterApi = async (data) => {
   try {

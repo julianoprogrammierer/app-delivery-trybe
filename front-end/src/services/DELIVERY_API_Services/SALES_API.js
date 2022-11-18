@@ -1,6 +1,6 @@
 import * as axios from 'axios';
 
-const SALES_ROUTE_MAIN = 'http://localhost:3001/sales';
+const SALES_ROUTE_MAIN = `${process.env.REACT_APP_BACKEND}/sales`;
 
 export const confirmSaleApi = async (saleObj, products, token) => {
   try {
