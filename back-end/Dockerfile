@@ -6,8 +6,8 @@ COPY package* ./
 
 COPY . .
 
-RUN npm run build && npm install --production
+RUN npm install --production
 
 ARG NODE_ENV=development
 
-# CMD ["npm", "start"]
+CMD ["npm", "start"]
