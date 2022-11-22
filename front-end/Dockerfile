@@ -10,4 +10,4 @@ RUN npm install --production
 
 # RUN npm run build
 
-# CMD ["npm", "start"]
+CMD ["npm", "start"]
