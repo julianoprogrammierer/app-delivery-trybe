@@ -41,6 +41,12 @@ export default function CheckoutProducts() {
 
   return (
     <CheckoutContainer>
+      <ol>
+        <p>Item</p>
+        <p>Quantidade</p>
+        <p>Preço unitário</p>
+        <p>Subtotal</p>
+      </ol>
       { checkoutList && checkoutList.map((product, index) => (
         <div key={ product.id }>
           <p
