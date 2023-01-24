@@ -25,103 +25,105 @@ export default function CostumerOrderDetails() {
   return (
     <CustomerDetailsContainer>
       <Header />
-      <h1>Detalhe do Pedido</h1>
-      {
-        sale
-          && (
-            <div>
-              <div className="label-order">
-                <span
-                  data-testid={ dataTestIds[37] }
-                >
-                  {`PEDIDO 000${sale.id}`}
-                </span>
-                <span
-                  data-testid={ dataTestIds[38] }
-                >
-                  {sale.seller.name}
-                </span>
-                <span
-                  data-testid={ dataTestIds[39] }
-                >
-                  {new Date(sale.saleDate).toLocaleDateString('pt-BR')}
-                </span>
-                <span
-                  data-testid={ `${dataTestIds[40]}${sale.id}` }
-                >
-                  {sale.status}
-                </span>
-                <button
-                  type="button"
-                  disabled={ sale.status !== 'Em Trânsito' }
-                  onClick={ handleUpdateStatus }
-                  data-testid={ dataTestIds[47] }
-                >
-                  MARCAR COMO ENTREGUE
-                </button>
-              </div>
-              <div className="titulos">
-                <p>Item</p>
-                <p>Descrição</p>
-                <p>Quantidade</p>
-                <p>Valor Unitário</p>
-                <p>Sub-total</p>
-              </div>
-              <div>
-                {
-                  sale.product && sale.product.map((e, i) => (
-                    <div
-                      className="products-list"
-                      key={ i }
-                    >
-                      <span data-testid={ dataTestIds[41] }>{i + 1}</span>
-                      <span
-                        data-testid={ `${dataTestIds[42]}${i}` }
-                      >
-                        {e.name}
-                      </span>
-                      <span
-                        data-testid={
-                          `${dataTestIds[43]}${i}`
-                        }
-                      >
-                        {e.salesProducts.quantity}
-                      </span>
-                      <span
-                        data-testid={
-                          `${dataTestIds[44]}${i}`
-                        }
-                      >
-                        {`R$ ${(e.price).replace('.', ',')}`}
-                      </span>
-                      <span
-                        data-testid={
-                          `${dataTestIds[45]}${i}`
-                        }
-                      >
-                        {`R$ ${(Number(e.price) * e.salesProducts.quantity)
-                          .toString().replace('.', ',')}`}
-                      </span>
-                    </div>
-                  ))
-                }
-              </div>
-              <div>
-                {
-                  [sale] && [sale].map((e, i) => (
-                    <div className="totalPrice" key={ i }>
-                      <span
-                        data-testid={ dataTestIds[46] }
-                      >
-                        {e.totalPrice.toString().replace('.', ',')}
-                      </span>
-                    </div>
-                  ))
-                }
-              </div>
+      <div>
+        <h1>Detalhe do Pedido</h1>
+        {
+          sale
+        && (
+          <div>
+            <div className="label-order">
+              <span
+                data-testid={ dataTestIds[37] }
+              >
+                {`PEDIDO 000${sale.id}`}
+              </span>
+              <span
+                data-testid={ dataTestIds[38] }
+              >
+                {sale.seller.name}
+              </span>
+              <span
+                data-testid={ dataTestIds[39] }
+              >
+                {new Date(sale.saleDate).toLocaleDateString('pt-BR')}
+              </span>
+              <span
+                data-testid={ `${dataTestIds[40]}${sale.id}` }
+              >
+                {sale.status}
+              </span>
+              <button
+                type="button"
+                disabled={ sale.status !== 'Em Trânsito' }
+                onClick={ handleUpdateStatus }
+                data-testid={ dataTestIds[47] }
+              >
+                MARCAR COMO ENTREGUE
+              </button>
             </div>
-          )
-      }
+            <div className="titulos">
+              <p>Item</p>
+              <p>Descrição</p>
+              <p>Quantidade</p>
+              <p>Valor Unitário</p>
+              <p>Sub-total</p>
+            </div>
+            <div>
+              {
+                sale.product && sale.product.map((e, i) => (
+                  <div
+                    className="products-list"
+                    key={ i }
+                  >
+                    <span data-testid={ dataTestIds[41] }>{i + 1}</span>
+                    <span
+                      data-testid={ `${dataTestIds[42]}${i}` }
+                    >
+                      {e.name}
+                    </span>
+                    <span
+                      data-testid={
+                        `${dataTestIds[43]}${i}`
+                      }
+                    >
+                      {e.salesProducts.quantity}
+                    </span>
+                    <span
+                      data-testid={
+                        `${dataTestIds[44]}${i}`
+                      }
+                    >
+                      {`R$ ${(e.price).replace('.', ',')}`}
+                    </span>
+                    <span
+                      data-testid={
+                        `${dataTestIds[45]}${i}`
+                      }
+                    >
+                      {`R$ ${(Number(e.price) * e.salesProducts.quantity)
+                        .toString().replace('.', ',')}`}
+                    </span>
+                  </div>
+                ))
+              }
+            </div>
+            <div>
+              {
+                [sale] && [sale].map((e, i) => (
+                  <div className="totalPrice" key={ i }>
+                    <span
+                      data-testid={ dataTestIds[46] }
+                    >
+                      {e.totalPrice.toString().replace('.', ',') }
+                    </span>
+                  </div>
+                ))
+              }
+            </div>
+          </div>
+        )
+        }
+      </div>
     </CustomerDetailsContainer>
   );
 }
