@@ -92,6 +92,10 @@ export default function ProductCards() {
             className="thumb"
             src={ product.urlImage }
             alt={ `${product.urlImage}imagem` }
+            onError={ ({ currentTarget }) => {
+              currentTarget.onerror = null; // prevents looping
+              currentTarget.src = 'https://i.imgur.com/HUnHaHw.gif';
+            } }
           />
 
           <div className="infoOptions">

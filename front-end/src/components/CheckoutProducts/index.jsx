@@ -3,11 +3,12 @@ import {
   saveUserProductListToCheckout,
   getUserProductListToCheckout,
 } from '../../Context/LocalStorage';
+import ProductsTotal from '../ProductsTotal';
 import CheckoutContainer from './styles';
 
 export default function CheckoutProducts() {
   const [checkoutList, setCheckoutList] = useState([]);
-  const [totalPrice, setTotalPrice] = useState();
+  const [totalPrice, setTotalPrice] = useState(0);
 
   const removeItem = (product) => {
     const indexMatch = checkoutList.indexOf(product);
@@ -39,69 +40,77 @@ export default function CheckoutProducts() {
     })();
   }, [checkoutList, setCheckoutList]);
 
-  return (
+  return totalPrice && (
     <CheckoutContainer>
-      { checkoutList && checkoutList.map((product, index) => (
-        <div key={ product.id }>
-          <p
-            data-testid={
-              `customer_checkout__element-order-table-item-number-${index}`
-            }
-            className="price"
-          >
-            {`${index + 1}`}
-          </p>
-
-          <div className="infoOptions">
+      <h1 className="checkout-screen">Finalizar Pedido</h1>
+      <div className="main-container">
+        <ol>
+          <p className="item">Item</p>
+          <p className="description">Descrição</p>
+          <p className="quantity">Quantidade</p>
+          <p className="price">Preço unitário</p>
+          <p className="subtotal">Subtotal</p>
+          <p className="remove-item">Remover Item</p>
+        </ol>
+        { checkoutList && checkoutList.map((product, index) => (
+          <div className="info-products" key={ product.id }>
             <p
-              data-testid={ `customer_checkout__element-order-table-name-${index}` }
+              className="item"
+              data-testid={
+                `customer_checkout__element-order-table-item-number-${index}`
+              }
+            >
+              {`${index + 1}`}
+            </p>
+
+            <p
               className="product-name"
+              data-testid={ `customer_checkout__element-order-table-name-${index}` }
             >
               {product.name}
             </p>
 
-            <div className="quantity">
-              <p
-                data-testid={
-                  `customer_checkout__element-order-table-quantity-${index}`
-                }
-              >
-                {product.quantity}
-              </p>
-              <p
-                data-testid={
-                  `customer_checkout__element-order-table-unit-price-${index}`
-                }
-              >
-                {product.price.replace('.', ',')}
-              </p>
-              <p
-                data-testid={
-                  `customer_checkout__element-order-table-sub-total-${index}`
-                }
-              >
-                {parseFloat(product.price * product.quantity)
-                  .toFixed(2).replace('.', ',')}
-              </p>
-              <button
-                data-testid={
-                  `customer_checkout__element-order-table-remove-${index}`
-                }
-                type="button"
-                onClick={ () => removeItem(product) }
-              >
-                Remover
-              </button>
-            </div>
+            <p
+              className="quantity"
+              data-testid={
+                `customer_checkout__element-order-table-quantity-${index}`
+              }
+            >
+              {product.quantity}
+            </p>
+            <p
+              data-testid={
+                `customer_checkout__element-order-table-unit-price-${index}`
+              }
+            >
+              {product.price.replace('.', ',')}
+            </p>
+            <p
+              data-testid={
+                `customer_checkout__element-order-table-sub-total-${index}`
+              }
+            >
+              {parseFloat(product.price * product.quantity)
+                .toFixed(2).replace('.', ',')}
+            </p>
+
+            <button
+              data-testid={
+                `customer_checkout__element-order-table-remove-${index}`
+              }
+              type="button"
+              onClick={ () => removeItem(product) }
+            >
+              Remover
+            </button>
           </div>
+        ))}
+
+        <div className="products-total-component">
+          <ProductsTotal totalPrice={ totalPrice } />
         </div>
-      ))}
-      <p>
-        Total: R$
-        <span data-testid="customer_checkout__element-order-total-price">
-          {`${parseFloat(totalPrice).toFixed(2).replace('.', ',')}`}
-        </span>
-      </p>
+
+      </div>
     </CheckoutContainer>
   );
 }
