@@ -18,14 +18,18 @@ const CheckoutContainer = styled.div`
 
   .main-container {
     width: 80%;
-    height: 40vh;
+    height: 50vh;
     box-shadow: 4px 4px 4px 4px rgba(0, 0, 0, 0.2);
     padding: 1rem;
     /* border: 4px solid grey; */
-
+    overflow: scroll;
+    
+  }
+  .head-container {
+    padding-top: 0;
   }
   
-  ol {
+  .head-container {
     display: flex;
     justify-content: space-between;
     padding: 0px 20px;
@@ -33,6 +37,7 @@ const CheckoutContainer = styled.div`
   }
   p {
     display:flex;
+    font-size: clamp(0.8em, 1em , 1.2em);
     align-items: center;
     align-self: center;
     justify-content: center;
@@ -47,17 +52,29 @@ const CheckoutContainer = styled.div`
     justify-content: space-between;
     align-items: center;
     padding: 0px 20px;
-    margin: 0;
+    margin-bottom: 5px;
   }
 
   .description {
-    min-width: 112px;
+    width: 100%;
+    min-width: 40%;
+    max-width: 51.8%;
+
+  }
+  .description-name {
+    width: 110%;
+    min-width: 40%;
+    max-width: 52%;
 
   }
   
-  .item {
-
-    background-color: grey;
+  .item .item-list{
+    min-width: 5%;
+  }
+  .item-list {
+    background-color: #2FC18C;
+    border-top-left-radius: 8px;
+    border-bottom-left-radius: 8px;
 
   }
 
@@ -65,22 +82,63 @@ const CheckoutContainer = styled.div`
     min-width: 112px;
 
   }
+  .quantity-list {
+    min-width: 112px;
+    background-color: #036B52;
+    color: white;
+
+  }
+  .price-table {
+    font-size: 1em;
+  }
+  .price-list {
+    min-width: 112px;
+    background-color: #421981;
+    color: white;
+
+  }
+  .subtotal {
+    min-width: 112px;
+  }
+
+  .subtotal-table {      
+    color: white;
+    background-color: #056CF9;
+  }
+
+  .remove-item {
+    min-width: 112px;
+
+  }
 
   button {
+    background-color: #2FC18C;
+    color: white;
+    font-size: 1.2em;
     min-width: 112px;
     height: 32px;
+    border-top-right-radius: 8px;
+    border-bottom-right-radius: 8px;
+    border: none
 
   }
 
   .products-total-component {
     border: 1px solid red;
-    width: 20%;
-    margin-left: 80%;
-    margin-top: 10%;
+    width: 350px;
+    height: 6rem;
+    /* margin-left: 80%; */
+    margin-top: 1.5rem;
 
   }
 
- 
+  @media (max-width: 768px) {
+    .price-table {
+    color: green;
+    min-width: 3rem;
+    font-size: 0.5em;
+  }
+  }
 
 `;
 

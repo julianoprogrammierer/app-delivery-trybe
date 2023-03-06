@@ -4,24 +4,45 @@ const ProductsTotalStyled = styled.div`
 
 text-align: center;
 font-size: 1.5rem;
-width: 200px;
+width: auto;
+min-width: 250px;
+height: auto;
 
 p {
+  display: flex;
+  align-items: center;  
   font-size: 2rem;
+  height: auto;
+  width: auto;
   border-radius: 4px;
   color: white;
   background: #036B52;
-  width: 200px;
+}
+
+
+.cents {  
+  align-self: flex-start;
+  margin-left: 1%;
 }
 
 .price {
-position: relative;
-font-size: 30px;
+  display: flex;
+  position: relative;
+  font-size: 30px;
+  width: 30p;
+  margin-left: 2%;
+  
+  spam {
+  display: flex;
+  justify-content: end;
+  }
 }
-
-.cents {  
-align-self: baseline;
-margin-top: 2.5px;
+.valor-symbol {
+  align-self: baseline;
+  font-size: 20px;
+  margin-right: -1rem;
+  padding: 0;
+  width: 0;
 }
 `;
 

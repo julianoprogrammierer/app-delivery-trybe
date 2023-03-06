@@ -82,7 +82,7 @@ export default function ProductCards() {
         <Cards key={ product.id }>
           <p
             data-testid={ `customer_products__element-card-price-${product.id}` }
-            className="price"
+            className="price-table"
           >
             {`R$ ${product.price.replace('.', ',')}`}
           </p>
@@ -94,7 +94,7 @@ export default function ProductCards() {
             alt={ `${product.urlImage}imagem` }
             onError={ ({ currentTarget }) => {
               currentTarget.onerror = null; // prevents looping
-              currentTarget.src = 'https://i.imgur.com/HUnHaHw.gif';
+              currentTarget.src = 'https://npbrewing.com.br/wp-content/uploads/2020/02/beer.gif';
             } }
           />
 

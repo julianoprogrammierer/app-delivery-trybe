@@ -43,19 +43,19 @@ export default function CheckoutProducts() {
   return totalPrice && (
     <CheckoutContainer>
       <h1 className="checkout-screen">Finalizar Pedido</h1>
-      <div className="main-container">
-        <ol>
+      <spam className="main-container">
+        <div className="head-container">
           <p className="item">Item</p>
           <p className="description">Descrição</p>
           <p className="quantity">Quantidade</p>
-          <p className="price">Preço unitário</p>
+          <p className="price-table">Preço unitário</p>
           <p className="subtotal">Subtotal</p>
           <p className="remove-item">Remover Item</p>
-        </ol>
+        </div>
         { checkoutList && checkoutList.map((product, index) => (
           <div className="info-products" key={ product.id }>
             <p
-              className="item"
+              className="item-list"
               data-testid={
                 `customer_checkout__element-order-table-item-number-${index}`
               }
@@ -64,14 +64,14 @@ export default function CheckoutProducts() {
             </p>
 
             <p
-              className="product-name"
+              className="description-name"
               data-testid={ `customer_checkout__element-order-table-name-${index}` }
             >
               {product.name}
             </p>
 
             <p
-              className="quantity"
+              className="quantity-list"
               data-testid={
                 `customer_checkout__element-order-table-quantity-${index}`
               }
@@ -79,6 +79,7 @@ export default function CheckoutProducts() {
               {product.quantity}
             </p>
             <p
+              className="price-list"
               data-testid={
                 `customer_checkout__element-order-table-unit-price-${index}`
               }
@@ -86,6 +87,7 @@ export default function CheckoutProducts() {
               {product.price.replace('.', ',')}
             </p>
             <p
+              className="subtotal subtotal-table"
               data-testid={
                 `customer_checkout__element-order-table-sub-total-${index}`
               }
@@ -95,6 +97,7 @@ export default function CheckoutProducts() {
             </p>
 
             <button
+              className="remove-item-buttom"
               data-testid={
                 `customer_checkout__element-order-table-remove-${index}`
               }
@@ -105,12 +108,8 @@ export default function CheckoutProducts() {
             </button>
           </div>
         ))}
-
-        <div className="products-total-component">
-          <ProductsTotal totalPrice={ totalPrice } />
-        </div>
-
-      </div>
+      </spam>
+      <ProductsTotal totalPrice={ totalPrice } />
     </CheckoutContainer>
   );
 }

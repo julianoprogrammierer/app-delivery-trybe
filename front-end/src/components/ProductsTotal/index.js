@@ -18,7 +18,9 @@ function ProductsTotal({ totalPrice }) {
   return (
     <ProductsTotalStyled>
       <p>
-        Total R$:
+        Total
+        {' '}
+        <p className="valor-symbol">R$</p>
         {formatPrice(totalPrice)}
       </p>
     </ProductsTotalStyled>
