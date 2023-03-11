@@ -3,6 +3,7 @@ import {
   saveUserProductListToCheckout,
   getUserProductListToCheckout,
 } from '../../Context/LocalStorage';
+import DetailsAndAddress from '../DetailsAndAddress';
 import ProductsTotal from '../ProductsTotal';
 import CheckoutContainer from './styles';
 
@@ -110,6 +111,7 @@ export default function CheckoutProducts() {
         ))}
       </spam>
       <ProductsTotal totalPrice={ totalPrice } />
+      <DetailsAndAddress />
     </CheckoutContainer>
   );
 }

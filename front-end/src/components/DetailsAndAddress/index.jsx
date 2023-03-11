@@ -5,6 +5,7 @@ import {
   getUserProductListToCheckout,
 } from '../../Context/LocalStorage';
 import API from '../../services/DELIVERY_API_Services';
+import DetailsAndAdress from './detailsAndAdress.style';
 
 export default function DetailsAndAddress() {
   const [user, setUser] = useState(undefined);
@@ -50,55 +51,66 @@ export default function DetailsAndAddress() {
   };
 
   return (
-    <div>
-      <h2> Detalhes e Endereço de Entrega </h2>
-      <label htmlFor="seller">
-        P. Vendedora Responsável:
-        <select
-          id="seller"
-          data-testid="customer_checkout__select-seller"
-          onChange={ (event) => setIdSelected(event.target.value) }
+    <DetailsAndAdress>
+      <h2 className="title"> Detalhes e Endereço de Entrega </h2>
+      <div className="shipped-box">
+
+        <label htmlFor="seller">
+          P. Vendedora Responsável:
+          <select
+            id="seller"
+            data-testid="customer_checkout__select-seller"
+            onChange={ (event) => setIdSelected(event.target.value) }
+          >
+            <option value="">Selecione um vendedor</option>
+            { sellers.length && sellers.map((seller) => (
+              <option
+                key={ seller.id }
+                value={ seller.id }
+                label={ seller.name }
+              >
+                { `${seller.name}` }
+              </option>
+            ))}
+          </select>
+        </label>
+        <label htmlFor="address">
+          Endereço:
+          <input
+            className="input-adress"
+            type="text"
+            id="address"
+            data-testid="customer_checkout__input-address"
+            value={ address }
+            onChange={ (event) => setAddress(event.target.value) }
+          />
+        </label>
+        <label
+          className="label-number"
+          htmlFor="number"
         >
-          <option value="">Selecione um vendedor</option>
-          { sellers.length && sellers.map((seller) => (
-            <option
-              key={ seller.id }
-              value={ seller.id }
-              label={ seller.name }
-            >
-              { `${seller.name}` }
-            </option>
-          ))}
-        </select>
-      </label>
-      <label htmlFor="address">
-        Endereço
-        <input
-          type="text"
-          id="address"
-          data-testid="customer_checkout__input-address"
-          value={ address }
-          onChange={ (event) => setAddress(event.target.value) }
-        />
-      </label>
-      <label htmlFor="number">
-        Número
-        <input
-          type="text"
-          id="number"
-          data-testid="customer_checkout__input-address-number"
-          value={ number }
-          onChange={ (event) => setNumber(event.target.value) }
-        />
-      </label>
-      <button
-        data-testid="customer_checkout__button-submit-order"
-        type="button"
-        disabled={ !idSelected }
-        onClick={ confirmSale }
-      >
-        FINALIZAR PEDIDO
-      </button>
-    </div>
+          Número:
+          <input
+            className="input-number"
+            type="text"
+            id="number"
+            data-testid="customer_checkout__input-address-number"
+            value={ number }
+            onChange={ (event) => setNumber(event.target.value) }
+          />
+        </label>
+      </div>
+      <div className="main-button">
+
+        <button
+          data-testid="customer_checkout__button-submit-order"
+          type="button"
+          disabled={ !idSelected }
+          onClick={ confirmSale }
+        >
+          GRAVAR PEDIDO
+        </button>
+      </div>
+    </DetailsAndAdress>
   );
 }

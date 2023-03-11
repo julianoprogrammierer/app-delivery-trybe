@@ -1,5 +1,4 @@
 import React, { useContext, useEffect, useState } from 'react';
-import { useNavigate } from 'react-router';
 import { useAppContext } from '../../Context/APIProvider';
 import {
   getUserProductListToCheckout,
@@ -7,13 +6,12 @@ import {
 } from '../../Context/LocalStorage';
 import API from '../../services/DELIVERY_API_Services';
 import { Cards, ProductCardsContainer } from './styles';
+import TotalPriceButtom from '../TotalPriceButtom/TotalPriceButtom';
 
 export default function ProductCards() {
   const { productsList, setProductsList } = useContext(useAppContext);
   const [totalPrice, setTotalPrice] = useState('0,00');
   const [productListToCheckout, setProductListToCheckout] = useState([]);
-
-  const navigate = useNavigate();
 
   useEffect(() => {
     (async () => {
@@ -139,19 +137,14 @@ export default function ProductCards() {
           </div>
         </Cards>
       ))}
-      <button
-        onClick={ () => navigate('/customer/checkout') }
-        disabled={ Number(totalPrice.replace(',', '.')) < 1 }
-        data-testid="customer_products__button-cart"
-        type="button"
-        className="checkout"
-      >
-        <span
-          data-testid="customer_products__checkout-bottom-value"
-        >
-          {`Ver Carrinho: R$ ${totalPrice}`}
-        </span>
-      </button>
+      <span>
+
+        <TotalPriceButtom
+          totalPrice={ totalPrice }
+          buttonText="Ver Carrinho :"
+          route="/customer/checkout"
+        />
+      </span>
     </ProductCardsContainer>
   );
 }

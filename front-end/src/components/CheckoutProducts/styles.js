@@ -10,7 +10,16 @@ const CheckoutContainer = styled.div`
   justify-content: center;
   flex-direction: column;
   align-items: center;
+  border: 1px solid green;
 
+  .shipped-box {
+    padding: 8px 20px;
+    box-sizing: content-box;
+    margin-top: 20px;
+    /* background-color: green; */
+    box-shadow: 4px 4px 4px 4px rgba(0, 0, 0, 0.2);
+
+  }
   
   .checkout-screen {
     font-size: 1.5rem;
@@ -18,7 +27,7 @@ const CheckoutContainer = styled.div`
 
   .main-container {
     width: 80%;
-    height: 50vh;
+    max-height: 40vh;
     box-shadow: 4px 4px 4px 4px rgba(0, 0, 0, 0.2);
     padding: 1rem;
     /* border: 4px solid grey; */
@@ -62,6 +71,7 @@ const CheckoutContainer = styled.div`
 
   }
   .description-name {
+    background-color: #EAF1EF;
     width: 110%;
     min-width: 40%;
     max-width: 52%;
