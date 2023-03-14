@@ -4,7 +4,7 @@ import { getUserFromLocalStorage } from '../../Context/LocalStorage';
 import API from '../../services/DELIVERY_API_Services';
 import Header from '../../components/Header';
 import CustomerDetailsContainer from '../CustomerDetails/styles';
-import OrderStatusCard from '../../components/OrderCard/OrderCard';
+import OrderCard from '../../components/OrderCard/OrderCard';
 
 export default function CustomerOrders() {
   const [sales, setSales] = useState([]);
@@ -18,7 +18,7 @@ export default function CustomerOrders() {
     getSales(id);
   }, [id]);
 
-  return (
+  return sales && (
     <CustomerDetailsContainer>
       <Header />
       <div className="sales-list-container">
@@ -28,11 +28,11 @@ export default function CustomerOrders() {
             key={ sale.id }
 
           >
-            <OrderStatusCard
-              orderId={ sale.id }
-              deliveryStatus={ sale.status }
-              orderDate={ sale.saleDate }
-              cardPrice={ sale.totalPrice }
+            <OrderCard
+              id={ sale.id }
+              status={ sale.status }
+              saleDate={ sale.saleDate }
+              totalPrice={ sale.totalPrice }
             />
           </Link>
         ))}
