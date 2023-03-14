@@ -44,7 +44,7 @@ export default function CheckoutProducts() {
   return totalPrice && (
     <CheckoutContainer>
       <h1 className="checkout-screen">Finalizar Pedido</h1>
-      <spam className="main-container">
+      <span className="main-container">
         <div className="head-container">
           <p className="item">Item</p>
           <p className="description">Descrição</p>
@@ -109,7 +109,7 @@ export default function CheckoutProducts() {
             </button>
           </div>
         ))}
-      </spam>
+      </span>
       <ProductsTotal totalPrice={ totalPrice } />
       <DetailsAndAddress />
     </CheckoutContainer>

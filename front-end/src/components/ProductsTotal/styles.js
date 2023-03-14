@@ -32,7 +32,7 @@ p {
   width: 30p;
   margin-left: 2%;
   
-  spam {
+  span {
   display: flex;
   justify-content: end;
   }

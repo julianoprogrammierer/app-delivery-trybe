@@ -4,6 +4,7 @@ import { getUserFromLocalStorage } from '../../Context/LocalStorage';
 import API from '../../services/DELIVERY_API_Services';
 import Header from '../../components/Header';
 import CustomerDetailsContainer from '../CustomerDetails/styles';
+import OrderStatusCard from '../../components/OrderCard/OrderCard';
 
 export default function CustomerOrders() {
   const [sales, setSales] = useState([]);
@@ -27,31 +28,12 @@ export default function CustomerOrders() {
             key={ sale.id }
 
           >
-            <div className="sales-card-container">
-              <p>
-                PEDIDO
-                <span data-testid={ `customer_orders__element-order-id-${sale.id}` }>
-                  {`000${sale.id}`}
-                </span>
-              </p>
-              <p
-                data-testid={ `customer_orders__element-delivery-status-${sale.id}` }
-              >
-                {`${sale.status}`}
-              </p>
-
-              <p
-                data-testid={ `customer_orders__element-order-date-${sale.id}` }
-              >
-                {`${new Date(sale.saleDate).toLocaleDateString('pt-BR')}`}
-              </p>
-              <p
-                data-testid={ `customer_orders__element-card-price-${sale.id}` }
-              >
-                {`R$ ${sale.totalPrice.replace('.', ',')}`}
-              </p>
-
-            </div>
+            <OrderStatusCard
+              orderId={ sale.id }
+              deliveryStatus={ sale.status }
+              orderDate={ sale.saleDate }
+              cardPrice={ sale.totalPrice }
+            />
           </Link>
         ))}
       </div>
