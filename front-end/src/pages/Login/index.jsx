@@ -80,6 +80,7 @@ function Login() {
 
   return (
     <LoginContainer className="login-container">
+      <img src="https://i.imgur.com/v88Whia.png" alt="logo-beer-with-four-stars" />
       <LoginForm className="login-form">
         <p>Login</p>
         <input

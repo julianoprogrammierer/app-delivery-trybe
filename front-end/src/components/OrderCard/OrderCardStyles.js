@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 
 export const CardContainer = styled.div`
+  width: 40%;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -9,6 +10,7 @@ export const CardContainer = styled.div`
   border: 1px solid #ccc;
   border-radius: 8px;
   box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+  
   margin-bottom: 16px;
 `;
 

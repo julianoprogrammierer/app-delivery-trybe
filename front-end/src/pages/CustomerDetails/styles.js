@@ -6,6 +6,12 @@ const CustomerDetailsContainer = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+
+  .sales-list-container {
+    width: 60vw;
+    /* color: red;
+    background-color: red; */
+  }
 `;
 
 export default CustomerDetailsContainer;

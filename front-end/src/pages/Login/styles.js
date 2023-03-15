@@ -1,11 +1,25 @@
 import styled from 'styled-components';
 
 export const LoginContainer = styled.div`
+  display:flex;
+  flex-direction: row;
+  align-self: center;
   align-items: center;
   display: flex;
   height: 100vh;
   justify-content: center;
   width: 100%;
+  background-image: url("https://i.imgur.com/EOcj2Fj.jpeg");
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-position: center center;
+  background-color: rgba(255, 255, 255, 0.6);  
+  overflow: hidden;
+  opacity: 40%;
+  img {
+    width: 23.1em;
+    margin-right: 3em;
+  }
 `;
 
 export const LoginForm = styled.form`
