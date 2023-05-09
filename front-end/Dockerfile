@@ -4,12 +4,13 @@ WORKDIR /app-frontend
 
 COPY package* ./
 
-COPY . .
-
 RUN npm install
+
+COPY . .
 
 RUN npm run build
 
-RUN npm install --production
+RUN npm ci --only=production
 
 CMD ["npm", "start"]
+
