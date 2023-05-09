@@ -6,8 +6,10 @@ COPY package* ./
 
 COPY . .
 
-RUN npm install --production
+RUN npm install
 
 RUN npm run build
+
+RUN npm install --production
 
 CMD ["npm", "start"]
