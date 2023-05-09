@@ -12,8 +12,7 @@ COPY . .
 # Executar o build do projeto
 RUN npm run build
 
-# Remover dependências de desenvolvimento após o build
-RUN npm prune --production
+# Mudança: não remova as dependências de desenvolvimento
+# RUN npm prune --production
 
 CMD ["npm", "start"]
-
