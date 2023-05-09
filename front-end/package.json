@@ -8,6 +8,7 @@
   "engineStrict": true,
   "private": true,
   "scripts": {
+    "build": "echo 'No build step required'",
     "start": "react-scripts start",
     "start:build": "PORT=3000 ./node_modules/.bin/serve -s build",
     "build": "react-scripts build",
